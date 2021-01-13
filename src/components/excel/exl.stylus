@@ -8,7 +8,7 @@
     table-layout: fixed
 
 .exl-table , .exl-td , .exl-th
-    border 1px solid #ccc
+    border 1px solid #E0E0E0
     text-align center
 
 .exl-td
@@ -26,3 +26,16 @@
 
 .exl-table-title
     height 50px
+
+/* 标准模式样式 */
+.exl-col-pattern , .exl-row-pattern
+    border 1px solid #E0E0E0
+    background-color: #F5F5F5
+
+.exl-col-pattern
+    height: 20px
+    line-height 20px
+
+.exl-row-pattern
+    width 20px
+    text-align center

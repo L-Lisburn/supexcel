@@ -1,0 +1,28 @@
+.exl-container
+    padding 20px
+    box-sizing border-box
+
+.exl-table
+    width: 100%
+    border-collapse collapse
+    table-layout: fixed
+
+.exl-table , .exl-td , .exl-th
+    border 1px solid #ccc
+    text-align center
+
+.exl-td
+    padding 20px
+    box-sizing border-box
+    width 200px
+
+.exl-header
+    display inline-block
+    width 100%
+    height 100%
+    overflow hidden
+    white-space nowrap
+    text-overflow ellipsis
+
+.exl-table-title
+    height 50px

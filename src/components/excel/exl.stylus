@@ -105,14 +105,14 @@
     width 20px
     text-align center
 
-
 /* 表单全选 */
 .exl-select-all
     position relative
+    cursor pointer
     >span
         display inline-block
         width 0
         height 0
         border 5px solid
         border-color transparent #BDBDBD #BDBDBD transparent
-        cursor pointer
+        

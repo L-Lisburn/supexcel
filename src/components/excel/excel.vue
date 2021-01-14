@@ -6,21 +6,20 @@
                 <div class="exl-tool-fx">
                     <button>
                         <i class="icon excel-icons">&#xe646;</i>
-                        
                     </button>
                     <input type="text" placeholder="函数">
                 </div>
                 <br/>
-                <button>
+                <button @click="_exl_font('bold')">
                     <i class="icon excel-icons">&#xe617;</i>
                 </button>
-                <button>
+                <button @click="_exl_font('italic')">
                     <i class="icon excel-icons">&#xe693;</i>
                 </button>
-                <button>
+                <button @click="_exl_font('underline')">
                     <i class="icon excel-icons">&#xe6fa;</i>
                 </button>
-                <button>
+                <button @click="_exl_font('strikethrough')">
                     <i class="icon excel-icons">&#xe6fb;</i>
                 </button>
                 <button>
@@ -68,11 +67,11 @@
             </div>
         </div>
         <div class="exl-content">
-            <table class="exl-table">
+            <table class="exl-table" id="tableWidth">
                 <thead v-if="columns !== undefined" class="exl-thead">
                     <tr v-if="pattern">
                         <td class="exl-row-pattern">
-                            <div class="exl-select-all" @click="_exl_select_all">
+                            <div class="exl-select-all">
                                 <span></span>
                             </div>
                         </td>
@@ -125,7 +124,7 @@
                             class="exl-td"
                             :style="{width : item.width === undefined ? '' : item.width + 'px'}"
                         >
-                            <span class="exl-col-name">{{item.value}}</span>
+                            <span class="exl-col-name" :class="">{{item.value}}</span>
                         </td>
                     </tr>
                 </tbody>
@@ -157,7 +156,7 @@ export default {
         /* 选择状态 */
         scn : '' ,
         /* 字体状态 */
-        font : ['bold' , 'italic'] ,
+        font : [] ,
     }),
     watch : {
         columns : {
@@ -169,7 +168,7 @@ export default {
     mounted () {
         this._exl_init();
 
-        this.controlWidth();
+      this.controlWidth()
     },
     methods : {
         /* 初始化 */
@@ -235,40 +234,58 @@ export default {
         /* 双击进入修改模式 */
         _exl_double_edit () {
 
+
         },
         /* 文本操作 */
         _exl_font (state) {
-            let data = this.font
-            for(var i in data){
-                if(data[i] == state){
-                    data.splice(i , 1)
-                }else{
-                    switch(state){
+
+           this.$nextTick(()=>{
+
+                if(this.font.length==0){
+                this.font.push('111')
+            }
+
+          for(var i in this.font){
+                // console.log(i);
+                if(this.font[i] == state){
+                    this.font.splice(i , 1)
+                    
+                }
+                
+                    console.log(this.font)
+
+               
+
+          }
+            switch(state){
                         /* 粗体 */
                         case 'bold' : 
                         
-                        this.font.push(state)
+                        this.font.unshift(state)
                         break;
                         /* 斜体 */
                         case 'italic' :
                         
-                        this.font.push(state)
+                        this.font.unshift(state)
                         break;
                         /* 下划线 */
                         case 'underline' :
                         
-                        this.font.push(state)
+                        this.font.unshift(state)
                         break;
                         /* 删除线 */
                         case 'strikethrough' :
                         
-                        this.font.push(state)
+                        this.font.unshift(state)
                         break;
                         default :
                             console.log('请传入正确的状态值')
                     }
-                }
-            }
+           })
+                   
+                
+            
+            
         },
         controlWidth(){
             var tTD;

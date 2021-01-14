@@ -72,7 +72,7 @@
                 <thead v-if="columns !== undefined" class="exl-thead">
                     <tr v-if="pattern">
                         <td class="exl-row-pattern">
-                            <div class="exl-select-all" @click="_exl_select_all">
+                            <div class="exl-select-all" @click="_exl_select('all')">
                                 <span></span>
                             </div>
                         </td>
@@ -82,6 +82,7 @@
                             :key="index"
                             :colspan="col.colspan === undefined ? '' : col.colspan"
                             :style="{width : col.width === undefined ? '' : col.width + 'px'}"
+                            @click="_exl_select('col' , 0 , index)"
                         >
                             <span v-html="_exl_init(index)"></span>
                         </td>
@@ -116,14 +117,19 @@
                         <td
                             class="exl-row-pattern"
                             v-if="pattern"
+                            @click="_exl_select('row' , index , 0)"
                         >
                             {{columns.length + index + 1}}
                         </td>
                         <td
-                            v-for="(item , index) in data[index]"
-                            :key="index"
+                            v-for="(item , idx) in data[index]"
+                            :key="idx"
                             class="exl-td"
-                            :style="{width : item.width === undefined ? '' : item.width + 'px'}"
+                            @click.stop="_exl_select('one' , index , idx)"
+                            :style="{
+                                width : item.width === undefined ? '' : item.width + 'px' ,
+                                backgroundColor : scn[0] == index ? '#E3F2FD' : 'transparent' ,
+                            }"
                         >
                             <span class="exl-col-name">{{item.value}}</span>
                         </td>
@@ -203,23 +209,29 @@ export default {
 
         },
         /* 选择 */
-        _exl_select(state){
+        _exl_select(state , row , col){
             switch(state){
                 /* 全选 */
-                case 'all' : 
+                case 'all' :
                     this.scn = state
                 break;
                 /* 列选中 */
                 case 'col' :
-                    this.scn = state
+                    console.log(row , col)
+                    this.scn = [row , col]
+                    console.log(this.scn)
                 break;
                 /* 行选中 */
                 case 'row' :
-                    this.scn = state
+                    console.log(row , col)
+                    this.scn = [row , col]
+                    console.log(this.scn)
                 break;
                 /* 单个选中 */
                 case 'one' :
-                    this.scn = state
+                    console.log(row , col)
+                    this.scn = [true , row , col]
+                    console.log(this.scn)
                 break;
                 /* 多个选中 */
                 case 'scn' :

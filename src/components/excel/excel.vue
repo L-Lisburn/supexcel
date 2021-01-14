@@ -3,6 +3,14 @@
         <div class="exl-tool-bar">
             <div class="exl-tool-font">
                 <!-- 字体 -->
+                <div class="exl-tool-fx">
+                    <button>
+                        <i class="icon excel-icons">&#xe646;</i>
+                        
+                    </button>
+                    <input type="text" placeholder="交换列或者行请以英文逗号隔开，交换多组请以分号隔开，例：a1,a3;1,3">
+                </div>
+                <br/>
                 <button>
                     <i class="icon excel-icons">&#xe617;</i>
                 </button>
@@ -21,6 +29,7 @@
                 <button>
                     <i class="icon excel-icons">&#xe67a;</i>
                 </button>
+                
             </div>
             <div class="exl-tool-format">
                 <!-- 排版 -->
@@ -56,14 +65,18 @@
                 <button>
                     <i class="icon excel-icons">&#xe6f8;</i>
                 </button>
-                <input type="text" placeholder="交换列或者行请以英文逗号隔开，交换多组请以分号隔开，例：a1,a2;1,2;">
+                <input type="text" placeholder="交换列或者行请以英文逗号隔开，交换多组请以分号隔开，例：a1,a3;1,3">
             </div>
         </div>
         <div class="exl-content">
             <table class="exl-table">
                 <thead class="exl-thead">
                     <tr v-if="pattern">
-                        <td class="exl-row-pattern"></td>
+                        <td class="exl-row-pattern">
+                            <div class="exl-select-all">
+                                <span></span>
+                            </div>
+                        </td>
                         <td
                             class="exl-col-pattern"
                             v-for="(col , index) in columns[0]"
@@ -112,6 +125,7 @@
                             :key="index"
                             class="exl-td"
                             :style="{width : item.width === undefined ? '' : item.width + 'px'}"
+                            @click="handle"
                         >
                             <span class="exl-col-name">{{item.value}}</span>
                         </td>

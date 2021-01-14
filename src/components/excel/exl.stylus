@@ -31,9 +31,10 @@
             background-color #E0E0E0
 
 /* 行列交换操作 */
-.exl-tool-views
+.exl-tool-views , .exl-tool-fx
+    display inline-block
     position relative
-    width: 70%
+    width: 45%
     height 40px
     border 1px solid #E0E0E0
     overflow hidden
@@ -49,8 +50,6 @@
         padding 0 20px 0 42px
         line-height 38px
 
-
-
 /* 表单样式控制 */
 .exl-content
     overflow-x scroll
@@ -64,6 +63,13 @@
 .exl-table , .exl-td , .exl-th
     border 1px solid #E0E0E0
     text-align center
+    /* 禁止选中 */
+    -webkit-touch-callout none
+    -webkit-user-select none
+    -khtml-user-select none
+    -moz-user-select none
+    -ms-user-select none
+    user-select none
 
 .exl-td
     padding 5px
@@ -98,3 +104,15 @@
 .exl-row-pattern
     width 20px
     text-align center
+
+
+/* 表单全选 */
+.exl-select-all
+    position relative
+    >span
+        display inline-block
+        width 0
+        height 0
+        border 5px solid
+        border-color transparent #BDBDBD #BDBDBD transparent
+        cursor pointer

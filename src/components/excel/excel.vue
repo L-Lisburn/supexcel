@@ -202,7 +202,7 @@ export default {
         //取出暂存的Table Cell
         if (tTD === undefined) tTD = this;
         //调整宽度
-        if (tTD.mouseDown != null && tTD.mouseDown === true) {
+        if (tTD.mouseDown != null && tTD.mouseDown ===true) {
             tTD.style.cursor = 'default';
             if (tTD.oldWidth + (event.x - tTD.oldX) > 0)
                 tTD.width = tTD.oldWidth + (event.x - tTD.oldX);

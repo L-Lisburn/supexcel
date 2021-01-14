@@ -49,7 +49,7 @@ export default {
           width : 400
         },
         {
-          value : '紧急联系人紧急联系人紧急联系人紧急联系人紧急联系人' ,
+          value : '紧急联系人' ,
           solt : 'urgent' ,
           width : 400
         },

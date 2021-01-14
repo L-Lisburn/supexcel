@@ -46,11 +46,17 @@
                     <i class="icon excel-icons">&#xe650;</i>
                 </button>
                 <button>
-                    合并后居中
+                    <i class="icon excel-icons">&#xe61a;</i>
                 </button>
                 <button>
                     <i class="icon excel-icons">&#xe6a0;</i>
                 </button>
+            </div>
+            <div class="exl-tool-views">
+                <button>
+                    <i class="icon excel-icons">&#xe6f8;</i>
+                </button>
+                <input type="text" placeholder="交换列或者行请以英文逗号隔开，交换多组请以分号隔开，例：a1,a2;1,2;">
             </div>
         </div>
         <div class="exl-content">

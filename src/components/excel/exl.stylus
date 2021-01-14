@@ -4,13 +4,18 @@
     overflow hidden
 
 /* 工具栏 */
-/* 字体类操作 */
+/* 字体类操作 && 排版操作 */
 .exl-tool-bar
     background-color #F5F5F5
+    margin 20px 0
+    padding 20px
+    box-sizing border-box
 
-.exl-tool-font
+.exl-tool-font , .exl-tool-format , .exl-tool-views
+    margin 12px 0
     width 100%
-    >button
+    button
+        position relative
         margin-right 10px
         outline none
         border 0
@@ -20,24 +25,33 @@
         height 40px
         line-height 40px
         text-align center
+        z-index 999
         &:hover
+            cursor pointer
             background-color #E0E0E0
 
-.exl-tool-format
-    width: 100%
-    >button
-        margin-right 10px
+/* 行列交换操作 */
+.exl-tool-views
+    position relative
+    width: 70%
+    height 40px
+    border 1px solid #E0E0E0
+    overflow hidden
+    input 
+        position absolute
+        top 0
+        left 0
+        height 40px
+        width 100%
+        z-index 0
         outline none
         border 0
-        background-color transparent
-        display inline-block
-        width 40px
-        height 40px
-        line-height 40px
-        text-align center
-        &:hover
-            background-color #E0E0E0
+        padding 0 20px 0 42px
+        line-height 38px
 
+
+
+/* 表单样式控制 */
 .exl-content
     overflow-x scroll
     width 100%

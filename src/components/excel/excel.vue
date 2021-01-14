@@ -6,7 +6,6 @@
                 <div class="exl-tool-fx">
                     <button>
                         <i class="icon excel-icons">&#xe646;</i>
-                        
                     </button>
                     <input type="text" placeholder="函数">
                 </div>
@@ -202,7 +201,6 @@ export default {
                     
                 }
             }
-
         },
         /* 选择 */
         _exl_select(state){

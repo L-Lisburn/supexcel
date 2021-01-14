@@ -201,7 +201,6 @@ export default {
                     
                 }
             }
-
         },
         /* 选择 */
         _exl_select(state){

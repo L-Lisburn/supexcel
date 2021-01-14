@@ -1,48 +1,128 @@
 <template>
     <div class="exl-container">
-        <table class="exl-table">
-            <thead>
-                <tr v-if="pattern">
-                    <td class="exl-row-pattern"></td>
-                    <td
-                        class="exl-col-pattern"
-                        v-for="(col , index) in columns[0]"
+        <div class="exl-tool-bar">
+            <div class="exl-tool-font">
+                <!-- 字体 -->
+                <button>
+                    <i class="icon excel-icons">&#xe617;</i>
+                </button>
+                <button>
+                    <i class="icon excel-icons">&#xe693;</i>
+                </button>
+                <button>
+                    <i class="icon excel-icons">&#xe6fa;</i>
+                </button>
+                <button>
+                    <i class="icon excel-icons">&#xe6fb;</i>
+                </button>
+                <button>
+                    <i class="icon excel-icons">&#xe682;</i>
+                </button>
+                <button>
+                    <i class="icon excel-icons">&#xe67a;</i>
+                </button>
+            </div>
+            <div class="exl-tool-format">
+                <!-- 排版 -->
+                <button>
+                    <i class="icon excel-icons">&#xe6f1;</i>
+                </button>
+                <button>
+                    <i class="icon excel-icons">&#xe6ad;</i>
+                </button>
+                <button>
+                    <i class="icon excel-icons">&#xe70d;</i>
+                </button>
+                <button>
+                    <i class="icon excel-icons">&#xe607;</i>
+                </button>
+                <button>
+                    <i class="icon excel-icons">&#xe605;</i>
+                </button>
+                <button>
+                    <i class="icon excel-icons">&#xe604;</i>
+                </button>
+                <button>
+                    <i class="icon excel-icons">&#xe650;</i>
+                </button>
+                <button>
+                    合并后居中
+                </button>
+                <button>
+                    <i class="icon excel-icons">&#xe6a0;</i>
+                </button>
+            </div>
+        </div>
+        <div class="exl-content">
+            <table class="exl-table">
+                <thead class="exl-thead">
+                    <tr v-if="pattern">
+                        <td class="exl-row-pattern"></td>
+                        <td
+                            class="exl-col-pattern"
+                            v-for="(col , index) in columns[0]"
+                            :key="index"
+                            :colspan="col.colspan === undefined ? '' : col.colspan"
+                            :style="{width : col.width === undefined ? '' : col.width + 'px'}"
+                        >
+                            <span v-html="_exl_init(index)"></span>
+                        </td>
+                    </tr>
+                    <tr
+                        v-for="(columns , index) in columns"
                         :key="index"
-                        :colspan="col.colspan === undefined ? '' : col.colspan"
-                        :style="{width : col.width === undefined ? '' : col.width + 'px'}"
                     >
-                        <span v-html="_exl_init(index)"></span>
-                    </td>
-                </tr>
-                <tr
-                    v-for="(columns , index) in columns"
-                    :key="index"
-                >
-                    <td
-                        class="exl-row-pattern"
-                        v-if="pattern"
-                    >
-                        {{index + 1}}
-                    </td>
-                    <td
-                        v-for="(col , index) in columns"
+                        <td
+                            class="exl-row-pattern"
+                            v-if="pattern"
+                        >
+                            {{index + 1}}
+                        </td>
+                        <td
+                            v-for="(col , index) in columns"
+                            :key="index"
+                            :rowspan="col.rowspan === undefined ? '' : col.rowspan"
+                            :colspan="col.colspan === undefined ? '' : col.colspan"
+                            class="exl-td"
+                            :style="{width : col.width === undefined ? '' : col.width + 'px'}"
+                        >
+                            <span class="exl-col-name">{{col.value}}</span>
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr
+                        v-for="(item , index) in data"
                         :key="index"
-                        :rowspan="col.rowspan === undefined ? '' : col.rowspan"
-                        :colspan="col.colspan === undefined ? '' : col.colspan"
-                        class="exl-td"
-                        :style="{width : col.width === undefined ? '' : col.width + 'px'}"
                     >
-                        <span class="exl-header">{{col.name}}</span>
-                    </td>
-                </tr>
-            </thead>
-        </table>
+                        <td
+                            class="exl-row-pattern"
+                            v-if="pattern"
+                        >
+                            {{columns.length + index + 1}}
+                        </td>
+                        <td
+                            v-for="(item , index) in data[index]"
+                            :key="index"
+                            class="exl-td"
+                            :style="{width : item.width === undefined ? '' : item.width + 'px'}"
+                        >
+                            <span class="exl-col-name">{{item.value}}</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </template>
 <script>
 export default {
     props : {
         columns : {
+            type : Array ,
+            required: true
+        },
+        data : {
             type : Array ,
             required: true
         },

@@ -1,31 +1,76 @@
 .exl-container
     padding 20px
     box-sizing border-box
+    overflow hidden
+
+/* 工具栏 */
+/* 字体类操作 */
+.exl-tool-bar
+    background-color #F5F5F5
+
+.exl-tool-font
+    width 100%
+    >button
+        margin-right 10px
+        outline none
+        border 0
+        background-color transparent
+        display inline-block
+        width 40px
+        height 40px
+        line-height 40px
+        text-align center
+        &:hover
+            background-color #E0E0E0
+
+.exl-tool-format
+    width: 100%
+    >button
+        margin-right 10px
+        outline none
+        border 0
+        background-color transparent
+        display inline-block
+        width 40px
+        height 40px
+        line-height 40px
+        text-align center
+        &:hover
+            background-color #E0E0E0
+
+.exl-content
+    overflow-x scroll
+    width 100%
 
 .exl-table
     width: 100%
     border-collapse collapse
-    table-layout: fixed
+    table-layout fixed
 
 .exl-table , .exl-td , .exl-th
     border 1px solid #E0E0E0
     text-align center
 
 .exl-td
-    padding 20px
+    padding 5px
     box-sizing border-box
-    width 200px
 
-.exl-header
+.exl-thead
+    >tr
+        background-color #FAFAFA
+
+.exl-col-name
     display inline-block
     width 100%
     height 100%
+    font-size 14px
+    letter-spacing 2px
     overflow hidden
     white-space nowrap
     text-overflow ellipsis
 
 .exl-table-title
-    height 50px
+    height 40px
 
 /* 标准模式样式 */
 .exl-col-pattern , .exl-row-pattern

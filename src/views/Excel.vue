@@ -1,6 +1,7 @@
 <template>
   <Excel
     :columns="columns"
+    :data="data"
     :pattern="true"
   />
 </template>
@@ -15,65 +16,68 @@ export default {
     columns : [
       [
         {
-          name : '姓名' ,
+          value : '姓名' ,
           solt : 'name' ,
-          rowspan : 2 ,
-          colspan : 2 ,
+          // rowspan : 2 ,
+          // colspan : 2 ,
+          width : 400
         },
         {
-          name : '年龄' ,
+          value : '年龄' ,
+          // rowspan : 2 ,
           solt : 'age' ,
+          width : 400
         },
         {
-          name : '性别' ,
-          solt : 'gender'
+          value : '性别' ,
+          solt : 'gender' ,
+          width : 400
         },
         {
-          name : '电话' ,
-          solt : 'phone'
+          value : '电话' ,
+          solt : 'phone' ,
+          width : 400
         },
         {
-          name : '身份证' ,
-          solt : 'idcard'
+          value : '身份证' ,
+          solt : 'idcard' ,
+          width : 400
         },
         {
-          name : '住址' ,
-          solt : 'address'
+          value : '住址' ,
+          solt : 'address' ,
+          width : 400
         },
         {
-          name : '紧急联系人紧急联系人紧急联系人紧急联系人紧急联系人' ,
-          solt : 'urgent'
+          value : '紧急联系人紧急联系人紧急联系人紧急联系人紧急联系人' ,
+          solt : 'urgent' ,
+          width : 400
         },
         {
-          name : '紧急联系电话' ,
-          solt : 'urgent_phone'
+          value : '紧急联系电话' ,
+          solt : 'urgent_phone' ,
+          width : 400
+        },
+      ],
+    ],
+    data : [
+      [
+        {
+          value : '张三' ,
+          solt : 'name' ,
+        },
+        {
+          value : '姓名' ,
+          solt : 'name' ,
         },
       ],
       [
         {
-          name : '姓名' ,
+          value : '张三' ,
           solt : 'name' ,
         },
-         {
-          name : '姓名' ,
-          solt : 'name' ,
-        },
-         {
-          name : '姓名' ,
-          solt : 'name' ,
-        },
-      ],
-      [
         {
-          name : '姓名' ,
-          solt : 'name' ,
-        },
-         {
-          name : '姓名' ,
-          solt : 'name' ,
-        },
-         {
-          name : '姓名' ,
+          value : '11' ,
           solt : 'name' ,
         },
       ]

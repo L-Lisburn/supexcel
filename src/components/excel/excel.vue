@@ -13,7 +13,7 @@
                 <button @click="_exl_font('bold')">
                     <i class="icon excel-icons">&#xe617;</i>
                 </button>
-                <button @click="_exl_font('italic')">
+                <button @click="_exl_font('italic' )">
                     <i class="icon excel-icons">&#xe693;</i>
                 </button>
                 <button @click="_exl_font('underline')">
@@ -71,7 +71,7 @@
                 <thead v-if="columns !== undefined" class="exl-thead">
                     <tr v-if="pattern">
                         <td class="exl-row-pattern">
-                            <div class="exl-select-all">
+                            <div class="exl-select-all" @click="_exl_select('all')">
                                 <span></span>
                             </div>
                         </td>
@@ -81,6 +81,7 @@
                             :key="index"
                             :colspan="col.colspan === undefined ? '' : col.colspan"
                             :style="{width : col.width === undefined ? '' : col.width + 'px'}"
+                            @click="_exl_select('col' , $event)"
                         >
                             <span v-html="_exl_init(index)"></span>
                         </td>
@@ -115,16 +116,20 @@
                         <td
                             class="exl-row-pattern"
                             v-if="pattern"
+                            @click="_exl_select('row' , $event)"
                         >
                             {{columns.length + index + 1}}
                         </td>
                         <td
-                            v-for="(item , index) in data[index]"
-                            :key="index"
-                            class="exl-td"
-                            :style="{width : item.width === undefined ? '' : item.width + 'px'}"
+                            v-for="(item , idx) in data[index]"
+                            :key="idx"
+                            class="exl-td  text"
+                            @click="_exl_select('one' , $event)"
+                            :style="{
+                                width : item.width === undefined ? '' : item.width + 'px' ,
+                            }"
                         >
-                            <span class="exl-col-name" :class="fontstyle">{{item.value}}</span>
+                            <span class="exl-col-name">{{item.value}}</span>
                         </td>
                     </tr>
                 </tbody>
@@ -155,6 +160,7 @@ export default {
         exchange : '' ,
         /* 选择状态 */
         scn : '' ,
+        activeIndex: -1 ,
         /* 字体状态 */
         font : [] ,
 
@@ -170,7 +176,7 @@ export default {
     mounted () {
         this._exl_init();
 
-      this.controlWidth()
+        this.controlWidth()
     },
     methods : {
         /* 初始化 */
@@ -205,23 +211,25 @@ export default {
             }
         },
         /* 选择 */
-        _exl_select(state){
+        _exl_select(state , env){
+            // console.log(env.currentTarget.getElementTagName('exl_active'))
             switch(state){
                 /* 全选 */
-                case 'all' : 
+                case 'all' :
                     this.scn = state
                 break;
                 /* 列选中 */
                 case 'col' :
-                    this.scn = state
+                    console.log(env)
                 break;
                 /* 行选中 */
                 case 'row' :
-                    this.scn = state
+                    env.currentTarget.parentElement.className = 'exl_active'
                 break;
                 /* 单个选中 */
                 case 'one' :
-                    this.scn = state
+                    // console.log(env.currentTarget.parentElement)
+                    env.target.parentElement.className = 'exl-td exl_active'
                 break;
                 /* 多个选中 */
                 case 'scn' :
@@ -238,13 +246,25 @@ export default {
 
         },
         /* 文本操作 */
-        _exl_font (state) {
+        _exl_font (state,env) {
+
+               
+
+
 
            this.$nextTick(()=>{
 
+
+            
+
                 if(this.font.length==0){
                 this.font.push('111')
+                
             }
+
+            //获取整个文本
+            var text=document.getElementsByClassName('text');
+            console.log(text);
 
           for(var i in this.font){
                 // console.log(i);
@@ -262,22 +282,38 @@ export default {
                         /* 粗体 */
                         case 'bold' : 
                         
-                        this.font.push(state)
+                        this.font.push(state);
+                        
+                        // for(var i in text){
+
+                        //         console.log(text[i].getAttribute('class'));
+
+                        //     if(text[i].getAttribute('class')=="exl_active"){
+
+                        //     }
+                        // }
+                        
+
                         break;
                         /* 斜体 */
                         case 'italic' :
-                        
+
                         this.font.push(state)
+                        // console.log(env.currentTarget.getElementsByClassName('exl-col-name'));
+                        //  env.currentTarget.getElementsByClassName('exl-col-name').calssList.add('italic')
                         break;
                         /* 下划线 */
                         case 'underline' :
                         
                         this.font.push(state)
+                        //  env.currentTarget.getElementsByClassName('exl-col-name').calssList.add('underline')
                         break;
                         /* 删除线 */
                         case 'strikethrough' :
                         
                         this.font.push(state)
+
+                        //  env.currentTarget.getElementsByClassName('exl-col-name').calssList.add('strikethrough')
                         break;
                         default :
                             console.log('请传入正确的状态值')

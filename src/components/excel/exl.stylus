@@ -72,8 +72,7 @@
     user-select none
 
 .exl-td
-    padding 5px
-    box-sizing border-box
+    padding 0!important
 
 .exl-thead
     >tr
@@ -81,11 +80,12 @@
 
 .exl-col-name
     display inline-block
+    padding 5px
+    box-sizing border-box
     width 100%
     height 100%
     font-size 14px
     letter-spacing 2px
-    overflow hidden
     white-space nowrap
     text-overflow ellipsis
 
@@ -115,4 +115,7 @@
         height 0
         border 5px solid
         border-color transparent #BDBDBD #BDBDBD transparent
-        
+
+/* 其余选中 */
+.exl_active
+    background-color #E3F2FD

@@ -81,7 +81,7 @@
                             :key="index"
                             :colspan="col.colspan === undefined ? '' : col.colspan"
                             :style="{width : col.width === undefined ? '' : col.width + 'px'}"
-                            @click="_exl_select('col' , 0 , index)"
+                            @click="_exl_select('col' , $event)"
                         >
                             <span v-html="_exl_init(index)"></span>
                         </td>
@@ -116,7 +116,7 @@
                         <td
                             class="exl-row-pattern"
                             v-if="pattern"
-                            @click="_exl_select('row' , index , 0)"
+                            @click="_exl_select('row' , $event)"
                         >
                             {{columns.length + index + 1}}
                         </td>
@@ -124,13 +124,12 @@
                             v-for="(item , idx) in data[index]"
                             :key="idx"
                             class="exl-td"
-                            @click.stop="_exl_select('one' , index , idx)"
+                            @click="_exl_select('one' , $event)"
                             :style="{
                                 width : item.width === undefined ? '' : item.width + 'px' ,
-                                backgroundColor : scn[0] == index ? '#E3F2FD' : 'transparent' ,
                             }"
                         >
-                            <span class="exl-col-name" :class="">{{item.value}}</span>
+                            <span class="exl-col-name">{{item.value}}</span>
                         </td>
                     </tr>
                 </tbody>
@@ -161,6 +160,7 @@ export default {
         exchange : '' ,
         /* 选择状态 */
         scn : '' ,
+        activeIndex: -1 ,
         /* 字体状态 */
         font : [] ,
     }),
@@ -174,7 +174,7 @@ export default {
     mounted () {
         this._exl_init();
 
-      this.controlWidth()
+        this.controlWidth()
     },
     methods : {
         /* 初始化 */
@@ -209,7 +209,8 @@ export default {
             }
         },
         /* 选择 */
-        _exl_select(state , row , col){
+        _exl_select(state , env){
+            console.log(env.currentTarget.getElementTagName('exl_active'))
             switch(state){
                 /* 全选 */
                 case 'all' :
@@ -217,21 +218,16 @@ export default {
                 break;
                 /* 列选中 */
                 case 'col' :
-                    console.log(row , col)
-                    this.scn = [row , col]
-                    console.log(this.scn)
+                    console.log(env)
                 break;
                 /* 行选中 */
                 case 'row' :
-                    console.log(row , col)
-                    this.scn = [row , col]
-                    console.log(this.scn)
+                    env.currentTarget.parentElement.className = 'exl_active'
                 break;
                 /* 单个选中 */
                 case 'one' :
-                    console.log(row , col)
-                    this.scn = [true , row , col]
-                    console.log(this.scn)
+                    // console.log(env.currentTarget.parentElement)
+                    env.target.parentElement.className = 'exl-td exl_active'
                 break;
                 /* 多个选中 */
                 case 'scn' :

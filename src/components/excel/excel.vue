@@ -1,4 +1,4 @@
-<template>
+-+++++++++++++++++++++++++++++<template>
     <div class="exl-container">
         <div class="exl-tool-bar">
             <div class="exl-tool-font">
@@ -124,7 +124,7 @@
                             class="exl-td"
                             :style="{width : item.width === undefined ? '' : item.width + 'px'}"
                         >
-                            <span class="exl-col-name" :class="">{{item.value}}</span>
+                            <span class="exl-col-name" :class="fontstyle">{{item.value}}</span>
                         </td>
                     </tr>
                 </tbody>
@@ -157,6 +157,8 @@ export default {
         scn : '' ,
         /* 字体状态 */
         font : [] ,
+
+        fontstyle:""
     }),
     watch : {
         columns : {
@@ -260,26 +262,28 @@ export default {
                         /* 粗体 */
                         case 'bold' : 
                         
-                        this.font.unshift(state)
+                        this.font.push(state)
                         break;
                         /* 斜体 */
                         case 'italic' :
                         
-                        this.font.unshift(state)
+                        this.font.push(state)
                         break;
                         /* 下划线 */
                         case 'underline' :
                         
-                        this.font.unshift(state)
+                        this.font.push(state)
                         break;
                         /* 删除线 */
                         case 'strikethrough' :
                         
-                        this.font.unshift(state)
+                        this.font.push(state)
                         break;
                         default :
                             console.log('请传入正确的状态值')
                     }
+
+                    // console.log(this.font);
            })
                    
                 

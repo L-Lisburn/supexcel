@@ -119,3 +119,14 @@
 /* 其余选中 */
 .exl_active
     background-color #E3F2FD
+
+
+/*
+.bold
+ font-weight bold
+
+.italic
+  font-style italic
+
+  */
+

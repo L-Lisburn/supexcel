@@ -343,7 +343,7 @@ export default {
 
          
 
-        // console.log(this.font);
+        console.log(this.font);
 
          
         
@@ -351,7 +351,7 @@ export default {
 
         
          for (var j in this.font) {
-              if (this.font[j] == state) {
+              if (this.font.indexOf(state)!==-1) {
                 button[y].style.background = "#E0E0E0";
                 
                 for(var i in text){
@@ -360,14 +360,17 @@ export default {
                    text[i].style.textDecoration=state;
                       
                 }
-              } else{
+              } 
+              else{
                   button[y].style.background='';
-                //   if(text.length){
-                //       for(var i in text){
-                //           text[i].style.fontWeight='normal';
-                //       }
+                  if(text.length){
+                      for(var i in text){
+                          text[i].style.fontWeight='normal';
+                          text[i].style.fontStyle='normal';
+                          text[i].style.textDecoration=''
+                      }
 
-                //   }
+                  }
               }
              
 
